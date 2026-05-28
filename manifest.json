@@ -1,8 +1,9 @@
 {
   "name": "Muscle Pain Checker",
   "short_name": "muscle-pain-",
-  "start_url": "/",
+  "start_url": "/muscle-pain-checker/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#6366f1"
+  "theme_color": "#6366f1",
+  "scope": "/muscle-pain-checker/"
 }
