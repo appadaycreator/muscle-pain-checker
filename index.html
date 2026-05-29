@@ -26,7 +26,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <meta name="twitter:description" content="痛む部位・運動強度・経過時間から筋肉痛かどうかを判断し、回復を早めるケア方法をアドバイス。登録不要・完全無料でご利用いただけます。" />
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="筋肉痛・部位別ケアアドバイザー【無料】無料診断・アドバイス" />
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -69,8 +69,32 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             .result-value { font-size: 28px; }
         }
         /* ── サービス固有CSS ── */
+        .quiz-opt { width:100%; padding:12px 14px; margin-bottom:8px; border:2px solid #e5e7eb; border-radius:10px; font-size:14px; cursor:pointer; background:#fff; text-align:left; transition:border-color .15s, background .15s; }
+        .quiz-opt:hover { border-color:#7c3aed; background:#f5f3ff; }
+        .quiz-opt:active { transform:scale(0.99); background:#ede9fe; }
+        .quiz-opt:focus-visible { outline:3px solid #7c3aed; outline-offset:2px; }
+        /* 戻るボタン */
+        .btn-back { background:#f8fafc; color:#7c3aed; border:2px solid #e5e7eb; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; transition:border-color .15s,background .15s; min-height:40px; touch-action:manipulation; display:inline-flex; align-items:center; }
+        .btn-back:hover { border-color:#7c3aed; background:#f5f3ff; }
+        .btn-back:focus-visible { outline:3px solid #7c3aed; outline-offset:2px; }
+        /* 質問アニメーション */
+        @keyframes slideInRight { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
+        .quiz-slide { animation:slideInRight .2s ease-out; }
+        /* 部位別アドバイス */
+        .part-advice { background:#f5f3ff; border-radius:10px; padding:12px 14px; margin:14px 0 0; font-size:13px; color:#4c1d95; line-height:1.8; }
+        .part-advice strong { display:block; font-size:12px; color:#7c3aed; margin-bottom:4px; }
+        /* 商品グリッド */
+        .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:10px; }
+        .product-card { border:1px solid #e5e7eb; border-radius:10px; padding:10px 8px; text-align:center; text-decoration:none; color:#333; transition:box-shadow .15s,border-color .15s; display:block; }
+        .product-card:hover { box-shadow:0 2px 12px rgba(124,58,237,.15); border-color:#7c3aed; }
+        .product-card .p-emoji { font-size:26px; display:block; margin-bottom:4px; }
+        .product-card .p-name { font-size:11px; font-weight:600; color:#374151; line-height:1.4; }
+        .product-card .p-label { font-size:10px; color:#7c3aed; margin-top:4px; font-weight:600; }
+        /* 結果シェアボタン行 */
+        .result-share { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+        .result-share a { flex:1; min-width:80px; text-align:center; padding:10px 14px; border-radius:8px; font-size:13px; text-decoration:none; font-weight:600; min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
+        @media (max-width:480px) { .product-grid { gap:8px; } .product-card .p-name { font-size:10px; } }
 
-    
 @media print{
   header,footer,nav,button,.no-print,
   [class*="share"],[class*="affiliate"],[id*="share"],
@@ -90,7 +114,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <header class="site-header" role="banner">
         <div class="emoji" aria-hidden="true">💪</div>
         <h1>筋肉痛・部位別ケアアドバイザー</h1>
-        <p>痛む部位・運動強度・経過時間から筋肉痛かどうかを判断し、回復を早めるケア方法...</p>
+        <p>痛む部位・運動強度・経過時間から筋肉痛を判断し、回復を早めるケア方法をアドバイスします。</p>
     </header>
 
     <main id="main-content" class="container" role="main" aria-label="筋肉痛・部位別ケアアドバイザーのメインコンテンツ">
@@ -99,25 +123,37 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 
         <div class="card" id="quiz-start">
           <h2 style="font-size:18px;font-weight:700;margin-bottom:12px;">💪 筋肉痛・部位別ケアアドバイザー</h2>
-          <p style="color:#666;font-size:14px;margin-bottom:8px;">痛む部位・運動強度・経過時間から筋肉痛かどうかを判断し、回復を早めるケア方法...</p>
-          <ul style="font-size:13px;color:#94a3b8;margin:0 0 16px 16px;"><li>質問数：5問</li><li>所要時間：約1分</li></ul>
+          <p style="color:#666;font-size:14px;margin-bottom:8px;">痛む部位・運動強度・経過時間を答えるだけで、あなたに最適な回復ケアをアドバイスします。</p>
+          <ul style="font-size:13px;color:#94a3b8;margin:0 0 16px 16px;"><li>質問数：5問</li><li>所要時間：約1分</li><li>登録不要・完全無料</li></ul>
           <button class="btn" onclick="startQuiz()">診断スタート →</button>
         </div>
+
         <div id="quiz-area" style="display:none;">
-          <div style="font-size:12px;color:#999;margin-bottom:8px;">
-            質問 <span id="q-num">1</span> / <span id="q-total">5</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <button id="btn-back" class="btn-back" onclick="goBack()" style="display:none;" aria-label="前の質問に戻る">← 前へ</button>
+            <div style="font-size:12px;color:#999;margin-left:auto;">
+              質問 <span id="q-num">1</span> / <span id="q-total">5</span>
+            </div>
           </div>
           <div id="q-progress" style="height:4px;background:#e5e7eb;border-radius:2px;margin-bottom:16px;">
             <div id="q-bar" style="height:100%;background:#7c3aed;border-radius:2px;transition:width .3s;width:20%;"></div>
           </div>
           <p id="q-text" style="font-size:16px;font-weight:600;margin-bottom:16px;"></p>
-          <div id="q-options" class="space-y-2"></div>
+          <div id="q-options"></div>
         </div>
+
         <div class="result" id="result">
           <div class="card">
             <h3 id="r-title" style="font-size:18px;font-weight:700;margin-bottom:8px;color:#7c3aed;"></h3>
             <p id="r-desc" style="color:#444;font-size:14px;line-height:1.7;"></p>
-            <button class="btn" style="margin-top:16px;" onclick="location.reload()">もう一度診断</button>
+            <div id="r-part-advice" class="part-advice" style="display:none;"></div>
+            <div id="r-products" style="display:none;">
+              <p style="font-size:13px;font-weight:700;color:#374151;margin:16px 0 4px;">🛒 おすすめケアグッズ</p>
+              <div id="r-product-grid" class="product-grid"></div>
+              <p style="font-size:10px;color:#9ca3af;margin-top:6px;">※ Amazonの商品ページへのリンクを含みます</p>
+            </div>
+            <div id="r-share" class="result-share"></div>
+            <button class="btn" style="margin-top:12px;" onclick="location.reload()">もう一度診断</button>
           </div>
         </div>
 
@@ -188,8 +224,8 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         </div>
     </main>
 
-    <footer style="text-align:center;padding:20px;color:white;font-size:12px;opacity:0.75;margin-top:8px;">
-        <p><a href="https://appadaycreator.github.io/" style="color:white;">AppADayCreator</a>
+    <footer style="text-align:center;padding:20px;color:white;font-size:12px;background:#374151;margin-top:8px;">
+        <p><a href="https://appadaycreator.com/" style="color:white;">AppADayCreator</a>
         | <a href="privacy-policy.html" style="color:white;">プライバシーポリシー</a>
         | <a href="terms.html" style="color:white;">利用規約</a>
         | <a href="contact.html" style="color:white;">お問い合わせ</a></p>
@@ -205,46 +241,167 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       { text:'Q4. 痛みの程度は？', opts:['張り感・違和感（動ける）','鈍い痛み（少し動きにくい）','かなり痛い（日常動作に支障）','激痛・腫れあり（動けない）'] },
       { text:'Q5. 痛みへの対処は？', opts:['ストレッチ・マッサージで楽になる','温めると楽になる','冷やすと楽になる','何をしても変わらない'] }
     ];
+
     const RESULTS = [
       { title:'🏃 アクティブリカバリータイプ — 軽い動きで血流を促進', desc:'典型的な筋肉痛です。軽い有酸素運動（ウォーキング・軽いジョグ）で血流を促進させると回復が早まります。翌日も軽く体を動かすこと（完全休養より早く回復）、タンパク質+炭水化物の食事を運動後30分以内に、睡眠8時間確保（成長ホルモン分泌で修復促進）が鍵です。フォームローラーや筋膜リリースボールで優しくほぐすのも効果的です。' },
       { title:'🌡️ ホットケア推奨タイプ — 温熱で筋肉をほぐして回復促進', desc:'48時間以上経過した筋肉痛には温熱療法が効果的です。ホットパック・温かいお風呂（38〜40℃・15〜20分）で患部を温め、温まった状態でゆっくりストレッチ。市販の温感湿布（サロンパス・バンテリン）も活用しましょう。炭酸浴（バスクリン・クナイプのホットタブ）は筋肉疲労の回復を加速します。腫れ・熱感がある場合は温めずに冷やしてください。' },
       { title:'❄️ アイシング推奨タイプ — 炎症を抑えて回復を早める', desc:'運動直後〜24時間以内の急性期は冷却が基本です。氷を布に包んで患部に10〜15分当てる（直接は凍傷に注意）を1〜2時間おきに繰り返しましょう。「RICE処置（Rest安静・Ice冷却・Compression圧迫・Elevation挙上）」が外傷・急性炎症の基本対処。腫れ・熱感が2日以上続く場合は整形外科を受診してください。' },
       { title:'😴 休養最優先タイプ — 完全休養と栄養で体を修復', desc:'痛みが強い・日常動作に支障がある場合は完全休養が最優先です。回復を促す栄養素はタンパク質（体重×2g/日）、BCAA・EAAサプリメント、ビタミンB群（神経・筋肉の修復）が重要です。痛みが72時間以上変わらない・腫れがひどい場合は筋断裂やオーバートレーニング症候群の可能性があります。無理せず整形外科を受診してください。' }
     ];
-    function getResult(answers) {
-      const scores = [0,0,0,0];
+
+    /* 部位別ケアアドバイス（Q1の回答に対応） */
+    const PART_ADVICE = [
+      '🦵 脚（太もも・ふくらはぎ）のケア: フォームローラーを膝から腰方向に転がして大腿四頭筋をほぐしましょう。ふくらはぎは壁に手をついてカーフストレッチ（30秒×3セット）が効果的。浮腫み軽減には就寝時に脚を少し高くして休むとよいでしょう。',
+      '💪 上半身（胸・背中・肩）のケア: 胸・肩はドアフレームを使った胸のストレッチ（両腕を壁に当て前に体重を乗せる）が効果的。背中は猫のポーズ（四つん這いで背中を丸める→反らす×10回）を繰り返すと緊張が和らぎます。',
+      '🏋️ 全身疲労のケア: 全身が疲れているときは入浴（39℃・20分）で副交感神経を優位にして回復を促しましょう。マグネシウム含有の入浴剤（エプソムソルト）は筋肉の緊張緩和に役立ちます。十分な睡眠と水分補給も必須です。',
+      '🔥 腹筋・コアのケア: 腹直筋は仰向けで膝を立ててゆっくり腹式呼吸をするだけで緩みます。コブラのポーズ（うつ伏せで上半身を反らす）を10秒×5回で腹筋を優しくほぐしましょう。ベルトを緩めた姿勢でのデスクワークも回復を助けます。'
+    ];
+
+    /* 結果タイプ別おすすめ商品（Amazon検索リンク） */
+    const PRODUCTS = [
+      [ // アクティブリカバリー
+        { emoji:'🪵', name:'フォームローラー\n筋膜リリース', url:'https://www.amazon.co.jp/s?k=フォームローラー+筋膜リリース' },
+        { emoji:'🥛', name:'ホエイプロテイン\n1kg', url:'https://www.amazon.co.jp/s?k=ホエイプロテイン+1kg' },
+        { emoji:'💊', name:'BCAA\nアミノ酸サプリ', url:'https://www.amazon.co.jp/s?k=BCAA+アミノ酸+サプリ' }
+      ],
+      [ // ホットケア
+        { emoji:'🔥', name:'温感湿布\nバンテリン', url:'https://www.amazon.co.jp/s?k=温感湿布+バンテリン' },
+        { emoji:'🛁', name:'炭酸入浴剤\nホットタブ', url:'https://www.amazon.co.jp/s?k=炭酸入浴剤+ホットタブ' },
+        { emoji:'♨️', name:'レンジで使える\nホットパック', url:'https://www.amazon.co.jp/s?k=電子レンジ+ホットパック+筋肉' }
+      ],
+      [ // アイシング
+        { emoji:'🧊', name:'繰り返し使える\nアイスパック', url:'https://www.amazon.co.jp/s?k=アイスパック+スポーツ+繰り返し' },
+        { emoji:'❄️', name:'冷感スプレー\nスポーツ用', url:'https://www.amazon.co.jp/s?k=冷感スプレー+スポーツ' },
+        { emoji:'🩹', name:'冷感湿布\n久光製薬', url:'https://www.amazon.co.jp/s?k=冷感湿布+スポーツ' }
+      ],
+      [ // 休養
+        { emoji:'💊', name:'BCAA+EAA\n回復サプリ', url:'https://www.amazon.co.jp/s?k=BCAA+EAA+回復' },
+        { emoji:'🌙', name:'エプソムソルト\nマグネシウム浴', url:'https://www.amazon.co.jp/s?k=エプソムソルト+マグネシウム' },
+        { emoji:'🩹', name:'消炎鎮痛\n湿布テープ', url:'https://www.amazon.co.jp/s?k=消炎鎮痛+湿布+テープ' }
+      ]
+    ];
+
+    /* 全5問を使った診断ロジック */
+    function getResultIdx(answers) {
+      const scores = [0,0,0,0]; // [アクティブ, ホット, アイシング, 休養]
       const a = answers.map(x => x.idx);
-      if(a[2]===0) { scores[2]+=3; }
-      if(a[2]===1) { scores[0]+=2; scores[2]+=1; }
-      if(a[2]===2) { scores[0]+=2; scores[1]+=1; }
-      if(a[2]===3) { scores[1]+=2; scores[3]+=1; }
-      if(a[3]===0) scores[0]+=2;
-      if(a[3]===1) { scores[0]+=1; scores[1]+=1; }
-      if(a[3]===2) { scores[3]+=2; }
-      if(a[3]===3) { scores[3]+=3; }
-      if(a[4]===0) scores[0]+=1;
-      if(a[4]===1) scores[1]+=2;
-      if(a[4]===2) scores[2]+=2;
-      const best = scores.indexOf(Math.max(...scores));
-      return RESULTS[best];
+      // Q1: 部位
+      if(a[0]===0) scores[0]+=1;       // 脚→アクティブリカバリー向き
+      if(a[0]===1) scores[1]+=1;       // 上半身→ホットケア向き
+      if(a[0]===2) scores[3]+=1;       // 全体疲労→休養向き
+      // a[0]===3（腹筋）は中立
+      // Q2: 運動強度
+      if(a[1]===0) scores[0]+=1;       // 軽め→アクティブ
+      if(a[1]===1) { scores[0]+=1; scores[1]+=1; } // 中程度→Active/Hot
+      if(a[1]===2) scores[3]+=2;       // ハード→休養
+      if(a[1]===3) scores[2]+=2;       // 普段しない→急性炎症可能性→アイシング
+      // Q3: 経過時間
+      if(a[2]===0) scores[2]+=3;       // 直後→アイシング
+      if(a[2]===1) { scores[0]+=2; scores[2]+=1; } // 翌日
+      if(a[2]===2) { scores[0]+=2; scores[1]+=1; } // 翌々日
+      if(a[2]===3) { scores[1]+=2; scores[3]+=1; } // 48h以上
+      // Q4: 痛みの程度
+      if(a[3]===0) scores[0]+=2;       // 違和感→アクティブ
+      if(a[3]===1) { scores[0]+=1; scores[1]+=1; } // 鈍い痛み
+      if(a[3]===2) scores[3]+=2;       // かなり痛い→休養
+      if(a[3]===3) scores[3]+=3;       // 激痛→休養
+      // Q5: 対処
+      if(a[4]===0) scores[0]+=1;       // ストレッチで楽→アクティブ
+      if(a[4]===1) scores[1]+=2;       // 温めで楽→ホット
+      if(a[4]===2) scores[2]+=2;       // 冷やすで楽→アイシング
+      if(a[4]===3) scores[3]+=1;       // 変わらない→休養
+      return scores.indexOf(Math.max(...scores));
     }
-    // ★以下変更不要★
-    const BTN='#7c3aed'; let cur=0; const ans=[];
-    document.addEventListener('DOMContentLoaded',()=>{ document.getElementById('q-total').textContent=QUESTIONS.length; });
-    function startQuiz(){ cur=0;ans.length=0; document.getElementById('quiz-start').style.display='none'; document.getElementById('quiz-area').style.display='block'; document.getElementById('result').classList.remove('show'); renderQ(); }
-    function renderQ(){
-      const q=QUESTIONS[cur];
-      document.getElementById('q-num').textContent=cur+1;
-      document.getElementById('q-bar').style.width=((cur+1)/QUESTIONS.length*100)+'%';
-      document.getElementById('q-text').textContent=q.text;
-      document.getElementById('q-options').innerHTML=q.opts.map((o,i)=>`<button onclick="answer(${i})" style="width:100%;padding:12px;margin-bottom:8px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;cursor:pointer;background:#fff;text-align:left;">${o}</button>`).join('');
+
+    let cur = 0;
+    const ans = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('q-total').textContent = QUESTIONS.length;
+    });
+
+    function startQuiz() {
+      cur = 0;
+      ans.length = 0;
+      document.getElementById('quiz-start').style.display = 'none';
+      document.getElementById('quiz-area').style.display = 'block';
+      document.getElementById('result').classList.remove('show');
+      renderQ();
     }
-    function answer(idx){ ans.push({idx}); cur++; if(cur>=QUESTIONS.length) showResult(); else renderQ(); }
-    function showResult(){
-      document.getElementById('quiz-area').style.display='none';
-      const r=getResult(ans);
-      document.getElementById('r-title').textContent=r.title;
-      document.getElementById('r-desc').textContent=r.desc;
+
+    function renderQ() {
+      const q = QUESTIONS[cur];
+      document.getElementById('q-num').textContent = cur + 1;
+      document.getElementById('q-bar').style.width = ((cur + 1) / QUESTIONS.length * 100) + '%';
+
+      const qText = document.getElementById('q-text');
+      const qOpts = document.getElementById('q-options');
+
+      qText.textContent = q.text;
+      qOpts.innerHTML = q.opts.map((o, i) =>
+        `<button class="quiz-opt" onclick="answer(${i})">${o}</button>`
+      ).join('');
+
+      // 戻るボタン：2問目以降に表示
+      document.getElementById('btn-back').style.display = cur > 0 ? 'inline-flex' : 'none';
+
+      // スライドインアニメーション
+      qText.classList.remove('quiz-slide');
+      qOpts.classList.remove('quiz-slide');
+      void qText.offsetWidth; // reflow で animation を再トリガー
+      qText.classList.add('quiz-slide');
+      qOpts.classList.add('quiz-slide');
+    }
+
+    function answer(idx) {
+      ans.push({ idx });
+      cur++;
+      if (cur >= QUESTIONS.length) showResult();
+      else renderQ();
+    }
+
+    function goBack() {
+      if (cur > 0) {
+        ans.pop();
+        cur--;
+        renderQ();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quiz-area').style.display = 'none';
+
+      const rIdx = getResultIdx(ans);
+      const r = RESULTS[rIdx];
+
+      document.getElementById('r-title').textContent = r.title;
+      document.getElementById('r-desc').textContent = r.desc;
+
+      // 部位別アドバイス
+      const partEl = document.getElementById('r-part-advice');
+      const partIdx = ans[0].idx;
+      partEl.innerHTML = '<strong>📍 あなたの部位別ケアポイント</strong>' + PART_ADVICE[partIdx];
+      partEl.style.display = 'block';
+
+      // おすすめ商品
+      const prods = PRODUCTS[rIdx];
+      document.getElementById('r-product-grid').innerHTML = prods.map(p =>
+        `<a href="${p.url}" target="_blank" rel="noopener" class="product-card">
+          <span class="p-emoji">${p.emoji}</span>
+          <div class="p-name">${p.name.replace('\n', '<br>')}</div>
+          <div class="p-label">Amazon →</div>
+        </a>`
+      ).join('');
+      document.getElementById('r-products').style.display = 'block';
+
+      // 結果タイプを含む動的シェアテキスト
+      const typeName = r.title.split('—')[0].trim().replace(/^[^\s]+\s/, '');
+      const shareText = encodeURIComponent('筋肉痛診断の結果：' + typeName + '\n無料で診断→');
+      const shareUrl = encodeURIComponent('https://appadaycreator.com/muscle-pain-checker/');
+      document.getElementById('r-share').innerHTML =
+        `<a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" rel="noopener" style="background:#1DA1F2;color:white;">𝕏 結果をシェア</a>` +
+        `<a href="https://line.me/R/msg/text/?${shareText}%0A${shareUrl}" target="_blank" rel="noopener" style="background:#00B900;color:white;">LINE でシェア</a>`;
+
       document.getElementById('result').classList.add('show');
     }
     </script>
