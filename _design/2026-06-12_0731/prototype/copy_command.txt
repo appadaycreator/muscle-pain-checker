@@ -1,0 +1,64 @@
+Fetch this design file, read its readme, and implement the relevant aspects of the design. https://api.anthropic.com/v1/design/h/jwxspmLWwmqD12J4gyAgQA
+Implement: ## 指示
+ClaudeDesignによって作成されたデザインを効果的に反映してほしい。
+
+- LPページとサービスページのデザインを実際のWebサービスに反映する。
+- **LPページは必ず `lp/index.html` として新規作成すること**（ディレクトリが存在しない場合は `mkdir lp` で作成）
+- サービスページは既存の / を更新。ユーザの利用動線を優先にしつつデザイン変更して。
+- コンテンツの目的に合わせて良いが、PCでもモバイルでも見れるように調整してほしい。
+- 全体のトップページのサービスページへのリンクは、LPページのURL（/lp/）に変更する
+- 今回の新デザイン（LPページのテーマカラーや素材・文字フォント・画像など）を該当既存サービスの全ページに刷新すること
+
+## ⚠️ 作業スコープ（必ず守ること）
+
+**読み込み・編集するファイルはこれだけ：**
+- `index.html`（サービスページ）
+- `lp/index.html`（LPページ・存在しない場合は新規作成）
+- 既存の `.css` ファイル（存在する場合のみ）
+
+**それ以外のファイル（contact.html, privacy-policy.html, terms.html, usage.html 等）は読まない・触らない。**
+ディレクトリ探索・ファイル一覧取得も不要。上記ファイルを直接編集すること。
+
+## ⚠️ 必須：実装完了後に必ず以下を実行すること（ローカルサーバーテストは不要）
+
+```bash
+git add -A
+git commit -m "Apply: design update with LP page"
+git push origin main
+```
+
+**git push origin main を実行してから完了とすること。push 完了のログを確認すること。**
+ローカルHTTPサーバーでのテストは不要。push が完了した時点で作業完了。
+
+## Claude Design プロジェクト
+
+
+Claude Design で生成されたコンポーネント（JSX・CSS）やプロトタイプの構成・スタイルを参考に実装すること。
+
+## デザイン参照画像（ローカル）
+- LP全体デザイン:      /Users/masayukitokunaga/workspace/30service/muscle-pain-checker/_design/2026-06-12_0731/01_design.png
+- サービスページデザイン: /Users/masayukitokunaga/workspace/30service/muscle-pain-checker/_design/2026-06-12_0731/02_design.png
+- アイコン素材シート:   /Users/masayukitokunaga/workspace/30service/muscle-pain-checker/_design/2026-06-12_0731/03_design.png
+- 分割済みアイコン:    /Users/masayukitokunaga/workspace/30service/muscle-pain-checker/assets/icons/split
+
+## 制約
+- GTM・GA4・AdSenseタグは変更しない
+- アフィリエイトリンクは変更しない
+- コアJSロジック（診断・計算ロジック）は変更しない
+
+## 対象プロジェクト
+329 筋肉痛・部位別ケアアドバイザー muscle-pain-checker https://appadaycreator.com/muscle-pain-checker/
+/Users/masayukitokunaga/workspace/30service/muscle-pain-checker/
+
+## ②デザイン改善要約（反映すること）
+SUMMARY_JSON:{"a":["部位別の回復タイムライン表示（何日で治るのか）の追加","症状の程度による3段階セグメント（軽症/中症/重症）の結果分岐"],"b":["結果のSNSシェアボタン（Twitter/X・LINE）を結果エリアに追加","「もう一度試す」ボタンをUI下部に設置","部位別ストレッチの動画/GIF埋め込み（YouTube/内部動画）"],"d":["医療機関への連携ではなく『実行可能なセルフケア』に特化（ユビーとの差別化）","運動強度・経過時間という行動軸で診断（医学的診断ではなく実用的アドバイス）","ケアグッズの推奨で無料ツール + 売上化の両立"],"seo_h1":"運動後の筋肉痛を部位別に診断｜自宅でできるケア方法を無料でアドバイス","seo_meta":"痛む部位・運動強度から筋肉痛かどうかを無料診断。セルフケア方法・ストレッチ・ケアグッズを部位別で提案。1分で完結します。","forbidden":["GTM-TXQGZRF9","G-ZDPNYD2875","ca-pub-8427583028015858","gtag","getResult","saveHistory","renderHistory","clearHistory","drawCharts","startQuiz","renderQ","answer","showResult","printResult","copyResultToClipboard","downloadResultAsCSV","Amazon アフィリエイトリンク","楽天市場アフィリエイト"]}
+
+## 現在のindex.htmlの構成情報（事前読み込み済み・tool callでのファイル読み込み不要）
+<title>筋肉痛・部位別ケアアドバイザー【無料】無料診断・アドバイス</title>
+<meta name="description" content="痛む部位・運動強度・経過時間から筋肉痛かどうかを判断し、回復を早めるケア方法をアドバイス。登録不要・完全無料でご利用いただけます。スマートフォン・PCどちらでも無料でお使いいただけます。">
+<!-- GTM: GTM-TXQGZRF9 -->
+<!-- GA4: G-ZDPNYD2875 -->
+<!-- AdSense: ca-pub-8427583028015858 -->
+<!-- Affiliate A8: A8.net/Amazon） -->
+<!-- JS functions: gtag, getResult, saveHistory, renderHistory, clearHistory, drawCharts, startQuiz, renderQ, answer, showResult, printResult, copyResultToClipboard, downloadResultAsCSV -->
+<h1>筋肉痛・部位別ケアアドバイザー</h1>
